@@ -587,6 +587,22 @@ numpy = ">=1.7"
 scipy = ">=0.13.2"
 
 [[package]]
+name = "qinterp"
+version = "1.8.1"
+description = "Python tools for interpolating 3D or 4D fields"
+category = "main"
+optional = false
+python-versions = "^3.9"
+develop = true
+
+[package.dependencies]
+numpy = "^1.21.1"
+
+[package.source]
+type = "directory"
+url = "deps/qinterp"
+
+[[package]]
 name = "scipy"
 version = "1.8.0"
 description = "SciPy: Scientific Library for Python"
@@ -695,7 +711,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.10"
-content-hash = "b028084b159cf28959febb0d7c93131268b1b7f105416d8bfde487be0d960044"
+content-hash = "77c0da3e81fd9206c713020236179643a5eeea19d9dd646125e1925373cd45bc"
 
 [metadata.files]
 appnope = [
@@ -1265,6 +1281,7 @@ qdldl = [
     {file = "qdldl-0.1.5.post0-cp39-cp39-win_amd64.whl", hash = "sha256:640cab781f87c2f1c04ada65615b3d1d136d319c4595176f37e2e3c99149108f"},
     {file = "qdldl-0.1.5.post0.tar.gz", hash = "sha256:c392c7427651d8b226423c7aba4a0f2338a1f38a4bbdabac6bc4afd8bc934f06"},
 ]
+qinterp = []
 scipy = [
     {file = "scipy-1.8.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:87b01c7d5761e8a266a0fbdb9d88dcba0910d63c1c671bdb4d99d29f469e9e03"},
     {file = "scipy-1.8.0-cp310-cp310-macosx_12_0_arm64.whl", hash = "sha256:ae3e327da323d82e918e593460e23babdce40d7ab21490ddf9fc06dec6b91a18"},

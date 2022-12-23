@@ -9,8 +9,9 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.10"
-pytrans = {path = "deps/pytrans", develop = true}
 ipykernel = "^6.9.0"
+pytrans = {path = "deps/pytrans", develop = true}
+qinterp = {path = "deps/qinterp", develop = true}
 
 [tool.poetry.dev-dependencies]
 

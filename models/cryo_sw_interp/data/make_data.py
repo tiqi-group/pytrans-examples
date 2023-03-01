@@ -59,6 +59,6 @@ data['pseudo_potential_1V1MHz1amu'] = ps
 
 print('saving')
 
-np.savez('surface_trap_data', **data)
+np.savez('cryo_sw_interp_trap_data', **data)
 
 print('done')

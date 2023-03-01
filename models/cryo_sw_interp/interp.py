@@ -9,17 +9,15 @@ from tqdm import tqdm
 import numpy as np
 from qinterp import TricubicScalarInterpolator
 
-data = np.load(data_path / 'surface_trap_data.npz')
+data = np.load(data_path / 'cryo_sw_interp_trap_data.npz')
 
 X = data["X"]
 Y = data["Y"]
 Z = data["Z"]
 
-electrodes = \
-    ["DCintop", "DCinbot"] + \
-    [f"DCtop{j}" for j in range(1, 6)] + \
-    [f"DCbot{j}" for j in range(1, 6)] + \
-    ['pseudo_potential_1V1MHz1amu']
+electrodes = [f"E{j}" for j in range(1, 21)] + ['pseudo_potential_1V1MHz1amu']
+
+interpolators = {}
 
 
 class TricubicScalarInterpolator1(TricubicScalarInterpolator):
@@ -35,8 +33,6 @@ class TricubicScalarInterpolator1(TricubicScalarInterpolator):
         shape, X = self._ravel_coords(x, y, z)
         return super().__call__(X, d).reshape(shape + (d * (3,)))
 
-
-interpolators = {}
 
 for name in tqdm(electrodes, "Loading interpolators"):
     field = np.stack([X, Y, Z, data[name]], axis=1)

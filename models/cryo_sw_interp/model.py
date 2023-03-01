@@ -12,23 +12,23 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class SurfaceTrap(AbstractTrap):
-    """Simple model of a surface trap with tricubic interpolation model
+class CryoTrapInterp(AbstractTrap):
+    """Simple model of a surface trap using analytical moments
     """
-    _electrodes = [
-        "DCintop", "DCinbot",
-        "DCtop1", "DCtop2", "DCtop3", "DCtop4", "DCtop5",
-        "DCbot1", "DCbot2", "DCbot3", "DCbot4", "DCbot5",
-    ]
-
+    _electrodes = [f"E{j}" for j in range(1, 21)]
     v_rf = 40.0
-    rf_freq = 20
+    rf_freq = 34
     omega_rf = 2 * np.pi * rf_freq * 1e6
-
-    w_ele = 165e-6
+    dc_gain = 2.5
     y0 = 0.0
-    z0 = 7e-5
+    z0 = 5.16792281e-05
     dt = 392e-9
+
+    # position of trap zones
+    w_ele = 125e-6
+    x_z1 = -375e-6  # x_ele(3)
+    x_z2 = 0.0      # x_ele(6)
+    x_z3 = 375e-6   # x_ele(9)
 
     ion = Ca40
 
@@ -63,5 +63,5 @@ class SurfaceTrap(AbstractTrap):
     @classmethod
     def x_ele(cls, j):
         # center position of electrode j
-        # j = 1 .. 5
-        return cls.w_ele * (j - 3)
+        # j = 2 .. 10
+        return cls.w_ele * (j - 6)

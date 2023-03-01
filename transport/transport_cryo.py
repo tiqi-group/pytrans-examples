@@ -19,13 +19,13 @@ from pytrans.solver import solver
 from pytrans.analysis import analyse_potential, analyse_fields_curvatures
 from pytrans.plotting import animate_waveform, plot3d_make_layout
 
-from models.cryo_sw import CryoTrap
+from models.cryo_sw_interp import CryoTrap as Trap
 
 savename = 'data_transport'
 
 
 print("Loading trap model")
-trap = CryoTrap()
+trap = Trap()
 print("done")
 z0 = trap.z0
 x_final = 375e-6

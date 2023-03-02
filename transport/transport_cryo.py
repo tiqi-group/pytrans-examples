@@ -12,7 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from pytrans.conversion import freq_to_curv
-from pytrans.utils.linspace_functions import zpspace
+from pytrans.functions import zpspace
 from pytrans import objectives as obj
 from pytrans.solver import solver
 
@@ -66,7 +66,7 @@ if not args.plot_only:
     print("done")
 
     waveform = waveform.value
-    np.save(savename, waveform)
+    # np.save(savename, waveform)
 else:
     waveform = np.load(f"{savename}.npy")
 

@@ -28,7 +28,7 @@ xx = zpspace(trap.x_ele(2), trap.x_ele(4), 100)  # [0.]
 
 axial = 1.
 tilt = -5
-curvature = freq_to_curv(axial * 1e6, ion=trap.ion)
+curvature = freq_to_curv(axial * 1e6, ion=trap._default_ion)
 
 
 print("preparing objectives")

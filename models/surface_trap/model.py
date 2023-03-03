@@ -7,7 +7,6 @@ import numpy as np
 from pytrans.electrode import DCElectrode, RFElectrode
 from pytrans.abstract_model import AbstractTrapModel
 from .interp import TricubicScalarInterpolator1, interpolators
-from pytrans.ions import Ca40
 
 import logging
 logger = logging.getLogger(__name__)
@@ -57,7 +56,6 @@ class SurfaceTrap(AbstractTrapModel):
     _rf_electrodes = {"RF": SurfaceTrapRFElectrode()}
     _rf_voltage = 40
     _rf_freq_mhz = 20
-    _default_ion = Ca40
 
     # Extra attributes and methodes to enrich the model
     w_ele = 165e-6

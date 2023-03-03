@@ -14,10 +14,10 @@ pytrans = {path = "deps/pytrans", develop = true}
 qinterp = {path = "deps/qinterp", develop = true}
 joblib = "^1.2.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autopep8 = "^1.7.0"
 flake8 = "^5.0.4"
-
+mypy = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

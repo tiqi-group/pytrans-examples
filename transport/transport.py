@@ -18,17 +18,20 @@ from pytrans.analysis import analyse_potential, analyse_fields_curvatures
 from pytrans.plotting import animate_waveform, plot3d_make_layout
 
 from models.surface_trap import SurfaceTrap as Trap
+from pytrans.ions import Ca40
 
 
 print("Loading trap model")
 trap = Trap()
+ion = Ca40
+
 print("done")
 z0 = trap.z0
 xx = zpspace(trap.x_ele(2), trap.x_ele(4), 100)  # [0.]
 
 axial = 1.
 tilt = -5
-curvature = freq_to_curv(axial * 1e6, ion=trap._default_ion)
+curvature = freq_to_curv(axial * 1e6, ion=ion)
 
 
 print("preparing objectives")

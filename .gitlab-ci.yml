@@ -1,0 +1,6 @@
+tests:
+  tags:
+    - py3.8
+  script:
+    - poetry install
+    - make test

@@ -13,8 +13,9 @@ from .conftest import SurfaceTrap
 
 def test_analyse_potential(trap: SurfaceTrap, voltages_e2):
     r0 = (trap.x_ele(2), 0, 70e-6)
-    res = analyse_potential(trap, voltages_e2, ion=Ca40, r0=r0, find_3dmin=True)
+    res = analyse_potential(trap, voltages_e2, ion=Ca40, r0=r0, find_3dmin=True,
+                            minimize_options=dict(accuracy=1e-12))
 
-    true_r1 = np.asarray([-1.64997678e+02, 2.35686706e-02, 6.97796418e+01]) * 1e-6
+    true_r1 = np.asarray([-164.99, 0.0235, 69.78]) * 1e-6
     assert np.allclose(res['r1'], true_r1, atol=1e-7, rtol=1e-2)
     assert np.abs(np.linalg.norm(res['shift'])) < 1e-7

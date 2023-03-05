@@ -14,7 +14,8 @@ pytrans = {path = "deps/pytrans", develop = true}
 qinterp = {path = "deps/qinterp", develop = true}
 joblib = "^1.2.0"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
+ecos = "^2.0.12"
 autopep8 = "^1.7.0"
 flake8 = "^5.0.4"
 mypy = "^1.0.1"

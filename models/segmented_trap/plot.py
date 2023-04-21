@@ -1,15 +1,12 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 #
-# Created: 10/2021
+# Created: 10/2022
 # Author: Carmelo Mordini <cmordini@phys.ethz.ch>
 
-'''
-Module docstring
-'''
+
 import numpy as np
-from numpy.typing import ArrayLike
-import matplotlib.pyplot as plt  # noqa
+import matplotlib.pyplot as plt
 
 from matplotlib.path import Path
 from matplotlib.patches import PathPatch
@@ -19,30 +16,33 @@ from matplotlib.animation import FuncAnimation
 
 import json
 from pathlib import Path as pathlib_path
-from .model import SurfaceTrap
-from .geometry import dc_width, rf_sep, rf_width
+from .model import Segtrap
 
 
 plt.rcParams['font.size'] = 9
-electrodes_data = pathlib_path(__file__).parent / 'surface_trap_geometry.json'
+electrodes_data = pathlib_path(__file__).parent / 'segmented_trap_geometry.json'
 
 with open(electrodes_data, 'r') as f:
     electrodes = json.load(f)
 
-all_patches = {}
-for name, ele in electrodes.items():
+electrode_x = []
+for ele in electrodes.values():
+    ele = np.asarray(ele[0])
+    electrode_x.append(ele[:, 0].mean())
+
+trap_y = min(abs(ele[:, 1]))
+
+all_patches = []
+labels_positions = []
+for j, (k, ele) in enumerate(electrodes.items()):
     path = Path.make_compound_path(*[Path(ring) for ring in ele])
     patch = PathPatch(path)
-    all_patches[name] = patch
+    all_patches.append(patch)
 
-el_y = rf_sep / 2 + rf_width
-dy = 50e-6
-labels_positions = np.asarray([
-    (-dc_width / 2, el_y + dy),
-    (dc_width / 2, el_y + dy),
-    (-dc_width / 2, -el_y - dy),
-    (dc_width / 2, -el_y - dy),
-]) * 1e6
+    if k.startswith('DCCc'):  # top
+        labels_positions.append([electrode_x[j % len(electrode_x)], trap_y + 40])
+    else:  # bottom
+        labels_positions.append([electrode_x[j % len(electrode_x)], -trap_y - 40])
 
 
 def find_ylim(a, r=0.05):
@@ -52,10 +52,10 @@ def find_ylim(a, r=0.05):
     return _min - r * ptp, _max + r * ptp
 
 
-def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
+def _setup_plot_on_trap(trap: Segtrap, vmin=-10, vmax=10, cmap='RdBu_r',
                         edgecolor='k', linewidth=0.5, fontsize=7, title=''):
 
-    fig, axes = plt.subplots(2, 1, figsize=(6, 3.2),
+    fig, axes = plt.subplots(2, 1, figsize=(8, 3.2),
                              sharex=True, dpi=100,
                              gridspec_kw=dict(height_ratios=[0.5, 1], top=0.95, bottom=0.14))
     fig.suptitle(title)
@@ -65,8 +65,8 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
     vzeros = np.zeros((nv,))
 
     # plot electrodes and voltages
-    patches = [all_patches[name] for name in trap._all_electrodes]
-    patches_blank = set(all_patches.values()) - set(patches)
+    patches = [all_patches[j] for j in trap.electrode_all_indices]
+    patches_blank = set(all_patches) - set(patches)
 
     cmap = plt.colormaps[cmap]
     norm = Normalize(vmin=vmin, vmax=vmax)
@@ -79,6 +79,7 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
     for pos in poss:
         tx = ax.text(*pos, f"{0:+.2f}", ha='center', va='center', fontsize=fontsize)
         labels.append(tx)
+    labels = tuple(labels)
 
     pc_rf = PatchCollection(patches_blank, facecolor='none', edgecolor=edgecolor, linewidth=linewidth, cmap=cmap, norm=norm)
     ax.add_collection(pc_rf)
@@ -86,17 +87,17 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
     ttime = ax.text(0.9, 0.85, '', transform=ax0.transAxes)
 
     ax.set(
-        xlim=(-350, 350),
-        ylim=(-400, 400),
-        xticks=np.arange(-300, 301, 100),
-        yticks=np.arange(-400, 401, 400),
+        xlim=(-600, 600),
+        ylim=(-300, 300),
+        xticks=np.arange(-500, 501, 250),
+        yticks=np.arange(-200, 201, 200),
         xlabel='x [um]',
         ylabel='y [um]',
         # aspect=1,
     )
 
     # plot potential
-    p0 = np.zeros_like(trap.x)
+    p0 = trap.potential(vzeros, trap.x, trap.y0, trap.z0, 1, pseudo=False)
     pot, = ax0.plot(trap.x * 1e6, p0)
 
     ax0.spines['right'].set_visible(False)
@@ -104,13 +105,13 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
     ax0.set(
         ylabel='$\\phi$ [eV]'
     )
-    fig.align_ylabels()
+    # fig.align_ylabels()
 
-    artists = (pc, pot, ttime, tuple(labels))
+    artists = (pc, pot, ttime, labels)
     return fig, axes, artists
 
 
-def plot_voltages_on_trap(trap: SurfaceTrap, voltages: ArrayLike, vmin=-10, vmax=10, cmap='RdBu_r',
+def plot_voltages_on_trap(trap: Segtrap, voltages, vmin=-10, vmax=10, cmap='RdBu_r',
                           edgecolor='k', linewidth=0.5, fontsize=7, title=''):
 
     fig, axes, artists = _setup_plot_on_trap(trap, vmin, vmax, cmap,
@@ -128,13 +129,13 @@ def plot_voltages_on_trap(trap: SurfaceTrap, voltages: ArrayLike, vmin=-10, vmax
     pot.set_ydata(potential)
     pot.axes.relim()
     pot.axes.autoscale_view()
-    for volt, t in zip(voltages, labels):
-        t.set_text(f"{volt:+.2f}")
-        t.set_color('k' if abs(volt) < 10 else 'w')
+    for v, t in zip(voltages, labels):
+        t.set_text(f"{v:+.2f}")
+        t.set_color('k' if abs(v) < 10 else 'w')
     return fig, axes
 
 
-def animate_waveform_on_trap(trap: SurfaceTrap, waveform: ArrayLike, vmin=-10, vmax=10, cmap='RdBu_r',
+def animate_waveform_on_trap(trap: Segtrap, waveform, vmin=-10, vmax=10, cmap='RdBu_r',
                              edgecolor='k', linewidth=0.5, fontsize=7, title='',
                              frames=None, animate_kw=dict()):
 
@@ -173,7 +174,16 @@ def animate_waveform_on_trap(trap: SurfaceTrap, waveform: ArrayLike, vmin=-10, v
 
 
 if __name__ == '__main__':
-    trap = SurfaceTrap()
-    plot_voltages_on_trap(trap, np.arange(trap.n_electrodes))
+    trap = Segtrap(["DCCc7"])
+    plot_voltages_on_trap(trap, [1.0])
 
+    # t = np.linspace(0, 1, 200)
+    # axials = 1.9e6 + 0.5e6 * np.sin(2 * np.pi * 2 * t)
+    # trap = Segtrap()()
+    # waveform = np.stack([trap.from_static_params(_ax, -5e6)[0] for _ax in axials], axis=0)
+
+    # ani = animate_waveform_on_trap(trap, waveform)
+
+    # from pytrans.plotting import animate_waveform
+    # ani2 = animate_waveform(trap, waveform, trap.x, 0, trap.z0)
     plt.show()

@@ -6,7 +6,7 @@
 import numpy as np
 from pytrans.electrode import DCElectrode, RFElectrode
 from pytrans.abstract_model import AbstractTrapModel
-from rectangle_electrode import rectangle_electrode as rect, pseudopotential as ps
+from .rectangle_electrode import rectangle_electrode as rect, pseudopotential as ps
 from .geometry import corners, dc_width, rf_sep, rf_width
 
 import logging

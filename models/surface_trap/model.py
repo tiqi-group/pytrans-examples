@@ -4,64 +4,63 @@
 # Created: 01-2021 - Carmelo Mordini <carmelo> <cmordini@phys.ethz.ch>
 
 import numpy as np
-from pytrans.abstract_model import AbstractTrap
-from . import interp
-from pytrans.ions import Ion, Ca40, atomic_mass
+from pytrans.electrode import DCElectrode, RFElectrode
+from pytrans.abstract_model import AbstractTrapModel
+from rectangle_electrode import rectangle_electrode as rect, pseudopotential as ps
+from .geometry import corners, dc_width, rf_sep, rf_width
 
 import logging
 logger = logging.getLogger(__name__)
 
+_DC_ELECTRODES = [
+    "E1", "E2", "E3", "E4"
+]
 
-class SurfaceTrap(AbstractTrap):
-    """Simple model of a surface trap with tricubic interpolation model
-    """
-    _electrodes = [
-        "DCintop", "DCinbot",
-        "DCtop1", "DCtop2", "DCtop3", "DCtop4", "DCtop5",
-        "DCbot1", "DCbot2", "DCbot3", "DCbot4", "DCbot5",
-    ]
 
-    v_rf = 40.0
-    rf_freq = 20
-    omega_rf = 2 * np.pi * rf_freq * 1e6
+class SurfaceTrapDCElectrode(DCElectrode):
 
-    w_ele = 165e-6
+    def __init__(self, name):
+        self._corners = corners[name]
+        super().__init__()
+
+    def _unit_potential(self, x, y, z):
+        return rect.rect_el_potential(x, y, z, *self._corners)
+
+    def _unit_gradient(self, x, y, z):
+        return rect.rect_el_gradient(x, y, z, *self._corners)
+
+    def _unit_hessian(self, x, y, z):
+        return rect.rect_el_hessian(x, y, z, *self._corners)
+
+
+class SurfaceTrapRFElectrode(RFElectrode):
+
+    def _unit_potential(self, x, y, z):
+        return ps.pseudo_potential(x, y, z, rf_sep, rf_width)
+
+    def _unit_gradient(self, x, y, z):
+        return ps.pseudo_gradient(x, y, z, rf_sep, rf_width)
+
+    def _unit_hessian(self, x, y, z):
+        return ps.pseudo_hessian(x, y, z, rf_sep, rf_width)
+
+
+class SurfaceTrap(AbstractTrapModel):
+
+    _dc_electrodes = {name: SurfaceTrapDCElectrode(name) for name in _DC_ELECTRODES}
+    _rf_electrodes = {"RF": SurfaceTrapRFElectrode()}
+    _rf_voltage = 40
+    _rf_freq_mhz = 20
+
+    # Extra attributes and methodes to enrich the model
+    w_ele = dc_width
+    x = np.arange(-600, 601, 0.5) * 1e-6
     y0 = 0.0
     z0 = 7e-5
     dt = 392e-9
 
-    ion = Ca40
-
-    def __init__(self, electrodes=None):
-        super().__init__(electrodes)
-        self.x = np.arange(-600, 601, 0.5) * 1e-6
-
-    def electrode_moment(self, name, x, y, z, d=0):
-        return interp.interpolators[name](x, y, z, d)
-
-    def dc_potentials(self, x, y, z):
-        return np.stack([self.electrode_moment(name, x, y, z, d=0) for name in self.electrodes], axis=0)
-
-    def dc_gradients(self, x, y, z):
-        return np.stack([self.electrode_moment(name, x, y, z, d=1) for name in self.electrodes], axis=0)
-
-    def dc_hessians(self, x, y, z):
-        return np.stack([self.electrode_moment(name, x, y, z, d=2) for name in self.electrodes], axis=0)
-
-    def pseudo_potential(self, x, y, z, ion: Ion = Ca40):
-        field = self.electrode_moment("pseudo_potential_1V1MHz1amu", x, y, z, d=0)
-        return field * self.v_rf**2 / (ion.mass / atomic_mass) / self.rf_freq**2
-
-    def pseudo_gradient(self, x, y, z, ion: Ion = Ca40):
-        field = self.electrode_moment("pseudo_potential_1V1MHz1amu", x, y, z, d=1)
-        return field * self.v_rf**2 / (ion.mass / atomic_mass) / self.rf_freq**2
-
-    def pseudo_hessian(self, x, y, z, ion: Ion = Ca40):
-        field = self.electrode_moment("pseudo_potential_1V1MHz1amu", x, y, z, d=2)
-        return field * self.v_rf**2 / (ion.mass / atomic_mass) / self.rf_freq**2
-
     @classmethod
     def x_ele(cls, j):
         # center position of electrode j
-        # j = 1 .. 5
-        return cls.w_ele * (j - 3)
+        # j = 1 .. 2
+        return cls.w_ele * (j - 1.5)

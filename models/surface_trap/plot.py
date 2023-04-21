@@ -8,6 +8,7 @@
 Module docstring
 '''
 import numpy as np
+from numpy.typing import ArrayLike
 import matplotlib.pyplot as plt  # noqa
 
 from matplotlib.path import Path
@@ -72,7 +73,6 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
     for pos in poss:
         tx = ax.text(*pos, f"{0:+.2f}", ha='center', va='center', fontsize=fontsize)
         labels.append(tx)
-    labels = tuple(labels)
 
     pc_rf = PatchCollection(patches_blank, facecolor='none', edgecolor=edgecolor, linewidth=linewidth, cmap=cmap, norm=norm)
     ax.add_collection(pc_rf)
@@ -90,7 +90,7 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
     )
 
     # plot potential
-    p0 = trap.potential(vzeros, trap.x, trap.y0, trap.z0)
+    p0 = np.zeros_like(trap.x)
     pot, = ax0.plot(trap.x * 1e6, p0)
 
     ax0.spines['right'].set_visible(False)
@@ -100,11 +100,11 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
     )
     fig.align_ylabels()
 
-    artists = (pc, pot, ttime, labels)
+    artists = (pc, pot, ttime, tuple(labels))
     return fig, axes, artists
 
 
-def plot_voltages_on_trap(trap: SurfaceTrap, voltages, vmin=-10, vmax=10, cmap='RdBu_r',
+def plot_voltages_on_trap(trap: SurfaceTrap, voltages: ArrayLike, vmin=-10, vmax=10, cmap='RdBu_r',
                           edgecolor='k', linewidth=0.5, fontsize=7, title=''):
 
     fig, axes, artists = _setup_plot_on_trap(trap, vmin, vmax, cmap,
@@ -113,7 +113,7 @@ def plot_voltages_on_trap(trap: SurfaceTrap, voltages, vmin=-10, vmax=10, cmap='
     ax0, ax = axes
     pc, pot, ttime, labels = artists
 
-    potential = trap.potential(voltages, trap.x, 0, trap.z0)
+    potential = trap.potential(voltages, trap.x, 0, trap.z0, 1, pseudo=False)
     cmap = plt.colormaps[cmap]
     norm = Normalize(vmin=vmin, vmax=vmax)
 
@@ -122,13 +122,13 @@ def plot_voltages_on_trap(trap: SurfaceTrap, voltages, vmin=-10, vmax=10, cmap='
     pot.set_ydata(potential)
     pot.axes.relim()
     pot.axes.autoscale_view()
-    for v, t in zip(voltages, labels):
-        t.set_text(f"{v:+.2f}")
-        t.set_color('k' if abs(v) < 10 else 'w')
+    for volt, t in zip(voltages, labels):
+        t.set_text(f"{volt:+.2f}")
+        t.set_color('k' if abs(volt) < 10 else 'w')
     return fig, axes
 
 
-def animate_waveform_on_trap(trap: SurfaceTrap, waveform, vmin=-10, vmax=10, cmap='RdBu_r',
+def animate_waveform_on_trap(trap: SurfaceTrap, waveform: ArrayLike, vmin=-10, vmax=10, cmap='RdBu_r',
                              edgecolor='k', linewidth=0.5, fontsize=7, title='',
                              frames=None, animate_kw=dict()):
 
@@ -137,7 +137,7 @@ def animate_waveform_on_trap(trap: SurfaceTrap, waveform, vmin=-10, vmax=10, cma
     ax0, ax = axes
     pc, pot, ttime, labels = artists
 
-    potentials = trap.potential(waveform, trap.x, 0, trap.z0)
+    potentials = trap.potential(waveform, trap.x, 0, trap.z0, 1, pseudo=False)
     cmap = plt.colormaps[cmap]
     norm = Normalize(vmin=vmin, vmax=vmax)
 
@@ -167,7 +167,7 @@ def animate_waveform_on_trap(trap: SurfaceTrap, waveform, vmin=-10, vmax=10, cma
 
 
 if __name__ == '__main__':
-    trap = SurfaceTrap(["DCtop3"])
+    trap = SurfaceTrap(["E1"])
     plot_voltages_on_trap(trap, [1.0])
 
     # t = np.linspace(0, 1, 200)

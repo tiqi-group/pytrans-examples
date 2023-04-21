@@ -4,7 +4,7 @@
 # Created: 01-2021 - Carmelo Mordini <carmelo> <cmordini@phys.ethz.ch>
 
 import numpy as np
-from pytrans.abstract_model import AbstractTrap
+from pytrans.abstract_model import AbstractTrapModel
 from . import interp
 from pytrans.ions import Ion, Ca40, atomic_mass
 
@@ -12,7 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class Segtrap(AbstractTrap):
+class Segtrap(AbstractTrapModel):
     """Simple model of a surface trap using analytical moments
     """
     _electrodes = [

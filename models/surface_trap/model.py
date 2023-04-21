@@ -13,7 +13,9 @@ import logging
 logger = logging.getLogger(__name__)
 
 _DC_ELECTRODES = [
-    "E1", "E2", "E3", "E4"
+    "DCintop", "DCinbot",
+    "DCtop1", "DCtop2", "DCtop3", "DCtop4", "DCtop5",
+    "DCbot1", "DCbot2", "DCbot3", "DCbot4", "DCbot5",
 ]
 
 

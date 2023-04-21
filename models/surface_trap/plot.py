@@ -20,7 +20,7 @@ from matplotlib.animation import FuncAnimation
 import json
 from pathlib import Path as pathlib_path
 from .model import SurfaceTrap
-from .geometry import dc_width, rf_sep, rf_width
+from .geometry import n_dc_lines, dc_edges, rf_sep, rf_width
 
 
 plt.rcParams['font.size'] = 9
@@ -35,14 +35,20 @@ for name, ele in electrodes.items():
     patch = PathPatch(path)
     all_patches[name] = patch
 
-el_y = rf_sep / 2 + rf_width
-dy = 50e-6
-labels_positions = np.asarray([
-    (-dc_width / 2, el_y + dy),
-    (dc_width / 2, el_y + dy),
-    (-dc_width / 2, -el_y - dy),
-    (dc_width / 2, -el_y - dy),
-]) * 1e6
+labels_x = np.asarray(dc_edges).mean(axis=1) * 1e6
+el_y = (rf_sep / 2 + rf_width) * 1e6
+dy = 50
+
+labels_positions = [(300, 50)] + [(300, -50)] + \
+    [(labels_x[j], el_y + dy) for j in range(n_dc_lines)] + \
+    [(labels_x[j], -el_y - dy) for j in range(n_dc_lines)]
+
+# labels_positions = np.asarray([
+#     (-dc_width / 2, el_y + dy),
+#     (dc_width / 2, el_y + dy),
+#     (-dc_width / 2, -el_y - dy),
+#     (dc_width / 2, -el_y - dy),
+# ]) * 1e6
 
 
 def find_ylim(a, r=0.05):
@@ -174,6 +180,5 @@ def animate_waveform_on_trap(trap: SurfaceTrap, waveform: ArrayLike, vmin=-10, v
 
 if __name__ == '__main__':
     trap = SurfaceTrap()
-    plot_voltages_on_trap(trap, np.arange(trap.n_electrodes))
-
+    plot_voltages_on_trap(trap, np.arange(trap.n_electrodes) - trap.n_electrodes / 2)
     plt.show()

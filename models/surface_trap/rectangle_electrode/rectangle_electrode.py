@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 #
-# Created: Mon 17 Apr 2023
+# Created: Mon 24 Apr 2023
 # Author: Carmelo Mordini <cmordini@phys.ethz.ch>
 #
 # Analytical functions for rectangle electrodes

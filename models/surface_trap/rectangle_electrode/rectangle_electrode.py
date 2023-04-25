@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 #
-# Created: Mon 24 Apr 2023
+# Created: Tue 25 Apr 2023
 # Author: Carmelo Mordini <cmordini@phys.ethz.ch>
 #
-# Analytical functions for rectangle electrodes
+# Analytical functions for rectangle electrodes in a SET - generated in Mathematica
+# ref: M.G.House, Phys.Rev.A 78, 033402 (2008)
+# https://doi.org/10.1103/PhysRevA.78.033402
 #
 # flake8: noqa
 

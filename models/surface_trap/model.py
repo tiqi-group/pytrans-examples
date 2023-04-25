@@ -56,13 +56,13 @@ class SurfaceTrap(AbstractTrapModel):
 
     # Extra attributes and methodes to enrich the model
     w_ele = dc_width
-    x = np.arange(-600, 601, 0.5) * 1e-6
+    x = np.arange(-350, 351, 0.5) * 1e-6
     y0 = 0.0
-    z0 = 7e-5
+    z0 = ps.rf_null_z(rf_sep, rf_width)
     dt = 392e-9
 
     @classmethod
     def x_ele(cls, j):
         # center position of electrode j
         # j = 1 .. 2
-        return cls.w_ele * (j - 1.5)
+        return cls.w_ele * (j - 3)

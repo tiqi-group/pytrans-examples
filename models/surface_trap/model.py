@@ -54,11 +54,12 @@ class SurfaceTrap(AbstractTrapModel):
     _rf_voltage = 40
     _rf_freq_mhz = 20
 
-    # Extra attributes and methodes to enrich the model
+    # Extra attributes and methods to enrich the model
     w_ele = dc_width
     x = np.arange(-350, 351, 0.5) * 1e-6
     y0 = 0.0
     z0 = ps.rf_null_z(rf_sep, rf_width)
+    rf_null_coords = (None, y0, z0)
     dt = 392e-9
 
     @classmethod

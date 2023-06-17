@@ -26,7 +26,7 @@ if __name__ == '__main__':
     rtilt = 8e7
 
     n_samples = 50
-    x = zpspace(trap.x_ele(2), trap.x_ele(4), n_samples)
+    x = zpspace(trap.x_ele(2), trap.x_ele(4), n_samples, k=5, gap=1.7)
     y0 = 0
     z0 = trap.z0
 
@@ -35,15 +35,18 @@ if __name__ == '__main__':
     objectives = []
 
     # fill objectives per-step
-    for j, x0 in enumerate(x):
-        objectives += [
-            obj.GradientObjective(x0, y0, z0, value=0, ion=Ca40),
-            obj.HessianObjective(x0, y0, z0, entries='xx', value=axial, ion=Ca40, pseudo=False),
-            obj.HessianObjective(x0, y0, z0, entries='yz', value=rtilt, ion=Ca40, pseudo=False),
-            obj.VoltageObjective(0)
+    def step_objective(voltages, x):
+        return [
+            obj.GradientObjective(voltages, trap, x, y0, z0, value=0, ion=Ca40),
+            obj.HessianObjective(voltages, trap, x, y0, z0, entries='xx', value=axial, ion=Ca40, pseudo=False),
+            obj.HessianObjective(voltages, trap, x, y0, z0, entries='yz', value=rtilt, ion=Ca40, pseudo=False),
         ]
 
+    for j, x0 in enumerate(x):
+        objectives += step_objective(waveform[j], x0)
+
     objectives += [
+        obj.VoltageObjective(waveform, 0),
         obj.VoltageObjective(waveform, 10, constraint_type='<='),
         obj.VoltageObjective(waveform, -10, constraint_type='>='),
         # obj.SlewRateObjective(4e6, constraint_type='<=')  # V/s

@@ -26,7 +26,7 @@ if __name__ == '__main__':
     rtilt = 8e7
 
     n_samples = 50
-    x = zpspace(trap.x_ele(2), trap.x_ele(4), n_samples, k=5, gap=1.7)
+    x = zpspace(trap.x_ele(2), trap.x_ele(4), n_samples, k=5, gap=1.75)
     y0 = 0
     z0 = trap.z0
 
@@ -49,8 +49,8 @@ if __name__ == '__main__':
         obj.VoltageObjective(waveform, 0),
         obj.VoltageObjective(waveform, 10, constraint_type='<='),
         obj.VoltageObjective(waveform, -10, constraint_type='>='),
-        # obj.SlewRateObjective(4e6, constraint_type='<=')  # V/s
         obj.SlewRateObjective(waveform, dt=trap.dt, weight=1e4)
+        # obj.SlewRateObjective(waveform, value=4e6, dt=trap.dt, constraint_type='<=')  # V/s
     ]
 
     _ = solver(objectives, verbose=True)

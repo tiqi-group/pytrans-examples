@@ -64,6 +64,7 @@ class SegmentedTrap(AbstractTrapModel):
     y0 = 0.0
     z0 = 0.0
     dt = 10e-9
+    rf_null_coords = (None, y0, z0)
 
     x_min = interp.x_min
     x_max = interp.x_max

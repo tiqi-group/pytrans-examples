@@ -16,7 +16,7 @@ from matplotlib.animation import FuncAnimation
 
 import json
 from pathlib import Path as pathlib_path
-from .model import Segtrap
+from .model import SegmentedTrap
 
 
 plt.rcParams['font.size'] = 9
@@ -52,7 +52,7 @@ def find_ylim(a, r=0.05):
     return _min - r * ptp, _max + r * ptp
 
 
-def _setup_plot_on_trap(trap: Segtrap, vmin=-10, vmax=10, cmap='RdBu_r',
+def _setup_plot_on_trap(trap: SegmentedTrap, vmin=-10, vmax=10, cmap='RdBu_r',
                         edgecolor='k', linewidth=0.5, fontsize=7, title=''):
 
     fig, axes = plt.subplots(2, 1, figsize=(8, 3.2),
@@ -111,7 +111,7 @@ def _setup_plot_on_trap(trap: Segtrap, vmin=-10, vmax=10, cmap='RdBu_r',
     return fig, axes, artists
 
 
-def plot_voltages_on_trap(trap: Segtrap, voltages, vmin=-10, vmax=10, cmap='RdBu_r',
+def plot_voltages_on_trap(trap: SegmentedTrap, voltages, vmin=-10, vmax=10, cmap='RdBu_r',
                           edgecolor='k', linewidth=0.5, fontsize=7, title=''):
 
     fig, axes, artists = _setup_plot_on_trap(trap, vmin, vmax, cmap,
@@ -135,7 +135,7 @@ def plot_voltages_on_trap(trap: Segtrap, voltages, vmin=-10, vmax=10, cmap='RdBu
     return fig, axes
 
 
-def animate_waveform_on_trap(trap: Segtrap, waveform, vmin=-10, vmax=10, cmap='RdBu_r',
+def animate_waveform_on_trap(trap: SegmentedTrap, waveform, vmin=-10, vmax=10, cmap='RdBu_r',
                              edgecolor='k', linewidth=0.5, fontsize=7, title='',
                              frames=None, animate_kw=dict()):
 
@@ -174,12 +174,12 @@ def animate_waveform_on_trap(trap: Segtrap, waveform, vmin=-10, vmax=10, cmap='R
 
 
 if __name__ == '__main__':
-    trap = Segtrap(["DCCc7"])
+    trap = SegmentedTrap(["DCCc7"])
     plot_voltages_on_trap(trap, [1.0])
 
     # t = np.linspace(0, 1, 200)
     # axials = 1.9e6 + 0.5e6 * np.sin(2 * np.pi * 2 * t)
-    # trap = Segtrap()()
+    # trap = SegmentedTrap()()
     # waveform = np.stack([trap.from_static_params(_ax, -5e6)[0] for _ax in axials], axis=0)
 
     # ani = animate_waveform_on_trap(trap, waveform)

@@ -6,8 +6,7 @@
 import numpy as np
 from pytrans.electrode import DCElectrode, RFElectrode
 from pytrans.abstract_model import AbstractTrapModel
-from .rectangle_electrode import rectangle_electrode as rect, pseudopotential as ps
-from .geometry import corners, dc_width, rf_sep, rf_width
+from .interp import TricubicScalarInterpolator1, interpolators
 
 import logging
 logger = logging.getLogger(__name__)
@@ -21,30 +20,34 @@ _DC_ELECTRODES = [
 
 class SurfaceTrapDCElectrode(DCElectrode):
 
-    def __init__(self, name):
-        self._corners = corners[name]
+    def __init__(self, interp_name):
+        self._interp: TricubicScalarInterpolator1 = interpolators[interp_name]
         super().__init__()
 
     def _unit_potential(self, x, y, z):
-        return rect.rect_el_potential(x, y, z, *self._corners)
+        return self._interp(x, y, z, d=0)
 
     def _unit_gradient(self, x, y, z):
-        return rect.rect_el_gradient(x, y, z, *self._corners)
+        return self._interp(x, y, z, d=1)
 
     def _unit_hessian(self, x, y, z):
-        return rect.rect_el_hessian(x, y, z, *self._corners)
+        return self._interp(x, y, z, d=2)
 
 
 class SurfaceTrapRFElectrode(RFElectrode):
 
+    def __init__(self):
+        self._interp: TricubicScalarInterpolator1 = interpolators['pseudo_potential_1V1MHz1amu']
+        super().__init__()
+
     def _unit_potential(self, x, y, z):
-        return ps.pseudo_potential(x, y, z, rf_sep, rf_width)
+        return self._interp(x, y, z, d=0)
 
     def _unit_gradient(self, x, y, z):
-        return ps.pseudo_gradient(x, y, z, rf_sep, rf_width)
+        return self._interp(x, y, z, d=1)
 
     def _unit_hessian(self, x, y, z):
-        return ps.pseudo_hessian(x, y, z, rf_sep, rf_width)
+        return self._interp(x, y, z, d=2)
 
 
 class SurfaceTrap(AbstractTrapModel):
@@ -54,16 +57,15 @@ class SurfaceTrap(AbstractTrapModel):
     _rf_voltage = 40
     _rf_freq_mhz = 20
 
-    # Extra attributes and methods to enrich the model
-    w_ele = dc_width
-    x = np.arange(-350, 351, 0.5) * 1e-6
+    # Extra attributes and methodes to enrich the model
+    w_ele = 165e-6
+    x = np.arange(-600, 601, 0.5) * 1e-6
     y0 = 0.0
-    z0 = ps.rf_null_z(rf_sep, rf_width)
-    rf_null_coords = (None, y0, z0)
+    z0 = 7e-5
     dt = 392e-9
 
     @classmethod
     def x_ele(cls, j):
         # center position of electrode j
-        # j = 1 .. 2
+        # j = 1 .. 5
         return cls.w_ele * (j - 3)

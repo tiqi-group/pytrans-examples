@@ -4,3 +4,6 @@
 [submodule "deps/qinterp"]
 	path = deps/qinterp
 	url = https://github.com/carmelom/qinterp.git
+[submodule "deps/rectset"]
+	path = deps/rectset
+	url = https://github.com/carmelom/rectset.git

@@ -136,7 +136,7 @@ def plot_voltages_on_trap(trap: SurfaceTrap, voltages: ArrayLike, vmin=-10, vmax
     pot.axes.autoscale_view()
     for volt, t in zip(voltages, labels):
         t.set_text(f"{volt:+.2f}")
-        t.set_color('k' if abs(volt) < 10 else 'w')
+        t.set_color('k' if abs(volt) < 8 else 'w')
     return fig, axes
 
 
@@ -165,7 +165,7 @@ def animate_waveform_on_trap(trap: SurfaceTrap, waveform: ArrayLike, vmin=-10, v
         pot.axes.autoscale_view()
         for v, t in zip(waveform[j], labels):
             t.set_text(f"{v:+.2f}")
-            t.set_color('k' if abs(v) < 10 else 'w')
+            t.set_color('k' if abs(v) < 8 else 'w')
         ttime.set_text(str(j))
         return (pc, pot, ttime,) + labels
 

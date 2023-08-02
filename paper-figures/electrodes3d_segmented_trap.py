@@ -57,9 +57,9 @@ def main():
         p3d.plot_electrode(plotter, *ee)
 
     # Create the grid for the vector field
-    # x, y, z = np.mgrid[-325:325:10j, -3:3:10j, -3:3:10j]
+    # x, y, z = np.mgrid[-0:0:1j, -3:3:7j, -3:3:7j]
     # u, v, w = electric_field(x, y, z)
-    # p3d.plot_vector_field(plotter, x, y, z, u, v, w, factor=4)
+    # p3d.plot_vector_field(plotter, x, y, z, u, v, w, factor=2, cmap='Reds')
 
     plotter.add_axes(color='k')
     plotter.show(screenshot="figures/segmented_trap.png")

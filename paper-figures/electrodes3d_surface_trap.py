@@ -62,13 +62,12 @@ def main():
     plotter = pv.Plotter()
 
     for name, ee in electrodes.items():
-        print(name, ee)
         p3d.plot_electrode(plotter, *ee)
 
     # Create the grid for the vector field
-    x, y, z = np.mgrid[-325:325:10j, -100:100:10j, 1e-2:100:10j]
+    x, y, z = np.mgrid[0:0:1j, -200:200:30j, 10:200:30j]
     u, v, w = electric_field(x, y, z)
-    p3d.plot_vector_field(plotter, x, y, z, u, v, w, factor=10)
+    p3d.plot_vector_field(plotter, x, y, z, u, v, w, factor=12, cmap='Greens', clim=(800, 15000))
 
     plotter.add_axes(color='k')
     plotter.show(screenshot="figures/surface_trap.png")

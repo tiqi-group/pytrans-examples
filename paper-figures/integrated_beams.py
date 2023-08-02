@@ -10,7 +10,7 @@ from plotting import plot3d as p3d
 
 
 def main():
-
+    pv.set_plot_theme('document')
     plotter = pv.Plotter()
 
     # Plot the electrode
@@ -24,12 +24,10 @@ def main():
     theta = 30 * np.pi / 180
 
     n1 = (-np.sin(theta), 0, np.cos(theta))
-    b1 = p3d.gaussian_beam(x, y, z, focus, n1, w0, zR)
-    p3d.plot_gaussian_beam(plotter, b1, x, y, z)
+    p3d.plot_gaussian_beam(plotter, x, y, z, focus, n1, w0, zR)
 
     n1 = (np.sin(theta), 0, np.cos(theta))
-    b1 = p3d.gaussian_beam(x, y, z, focus, n1, w0, zR)
-    p3d.plot_gaussian_beam(plotter, b1, x, y, z)
+    p3d.plot_gaussian_beam(plotter, x, y, z, focus, n1, w0, zR)
 
     # Add the example electric field vector
     # x, y, z = np.mgrid[-5:5:10j, -5:5:10j, 0:10:10j]

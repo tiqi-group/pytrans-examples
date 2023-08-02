@@ -25,7 +25,8 @@ def plot_electrode(plotter, center=(0.0, 0.0, 0.0), x_length=1.0, y_length=1.0, 
     opacity: float, optional
         The opacity of the electrode. Defaults to 0.8.
     """
-    plotter.add_mesh(pv.Cube(center=center, x_length=x_length, y_length=y_length, z_length=z_length, bounds=bounds), color=color, opacity=opacity)
+    electrode = pv.Cube(center=center, x_length=x_length, y_length=y_length, z_length=z_length, bounds=bounds)
+    plotter.add_mesh(electrode, color=color, opacity=opacity)
 
 
 def gaussian_beam(x, y, z, r0, n, w0, zR):
@@ -93,7 +94,7 @@ def plot_gaussian_beam(plotter, x, y, z, r0, n, w0, zR, opacity=0.45, cmap="Reds
     plotter.add_mesh(contour, opacity=opacity, cmap=cmap, show_scalar_bar=False)
 
 
-def plot_vector_field(plotter, x, y, z, u, v, w, color='gray', factor=0.5):
+def plot_vector_field(plotter, x, y, z, u, v, w, factor=0.5, **kwargs):
     """
     Add a vector field to the plotter.
 
@@ -110,7 +111,9 @@ def plot_vector_field(plotter, x, y, z, u, v, w, color='gray', factor=0.5):
         The scaling factor applied to the vectors. Defaults to 0.5.
     """
     grid = pv.StructuredGrid(x, y, z)
-    grid["vectors"] = np.stack([u.flatten("F"), v.flatten("F"), w.flatten("F")], axis=-1)
-    grid.set_active_vectors("vectors")
-    arrows = grid.glyph(scale=False, factor=factor)
-    plotter.add_mesh(arrows, color=color, show_scalar_bar=False)
+    v = np.stack([u.flatten("F"), v.flatten("F"), w.flatten("F")], axis=-1)
+    grid["magnitude"] = np.sqrt(np.sum(v**2, axis=-1))
+    grid["vectors"] = v
+    # print(grid['magnitude'].min(), grid['magnitude'].max())
+    arrows = grid.glyph(orient="vectors", scale=False, factor=factor)
+    plotter.add_mesh(arrows, scalars="magnitude", show_scalar_bar=False, **kwargs)

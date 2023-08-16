@@ -1,0 +1,8 @@
+# cpc.mplstyle
+# Created: 08/2023
+# Author: Carmelo Mordini <cmordini@phys.ethz.ch>
+# 
+# Computer Physics Commmunication journal matplotlib style
+
+figure.figsize: 3.487, 2.615
+font.size: 7

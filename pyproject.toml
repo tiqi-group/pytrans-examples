@@ -15,6 +15,7 @@ qinterp = {path = "deps/qinterp", develop = true}
 rectset = {path = "deps/rectset", develop = true}
 joblib = "^1.2.0"
 pyvista = "^0.41.1"
+doit = "^0.36.0"
 
 [tool.poetry.dev-dependencies]
 ecos = "^2.0.12"

@@ -16,6 +16,8 @@ from pytrans.ions import Ca40
 def plot(figname):
     from plotting.settings import data_dir
     from models.segmented_trap import SegmentedTrap
+    from plotting.settings import apply_style
+    apply_style()
 
     trap = SegmentedTrap()
     waveform = np.load(data_dir / 'waveform_static_segmented_trap.npy')

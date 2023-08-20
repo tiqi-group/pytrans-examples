@@ -610,6 +610,18 @@ files = [
 ]
 
 [[package]]
+name = "import-deps"
+version = "0.2.0"
+description = "find python module imports"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "import_deps-0.2.0-py3-none-any.whl", hash = "sha256:295d5f31cb35df7c471ec4b05bcde06c123b73d1f6d375894070d990b132572d"},
+    {file = "import_deps-0.2.0.tar.gz", hash = "sha256:c63dbbc91cc6a6d9bd3ef3fd3193c285712a2d6bba2f3bc2582158d186a84fb1"},
+]
+
+[[package]]
 name = "importlib-metadata"
 version = "6.0.0"
 description = "Read metadata from Python packages"
@@ -1509,6 +1521,17 @@ files = [
 plugins = ["importlib-metadata"]
 
 [[package]]
+name = "pygraphviz"
+version = "1.11"
+description = "Python interface to Graphviz"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pygraphviz-1.11.zip", hash = "sha256:a97eb5ced266f45053ebb1f2c6c6d29091690503e3a5c14be7f908b37b06f2d4"},
+]
+
+[[package]]
 name = "pyparsing"
 version = "3.0.9"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
@@ -2218,4 +2241,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.12"
-content-hash = "8a49840d5d94d8a98cecd9ff70b3fd5d0a8d6f457f862a3da2df6d25b84fb4f5"
+content-hash = "24b99ecef74ff7b1fe201580af0d2e998d5a81bf626d6e197c4a7f3f863c8625"

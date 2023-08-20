@@ -8,6 +8,9 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 here = Path(__file__).resolve().parent
-plt.style.use(here / 'cpc.mplstyle')
 
 data_dir = here.parents[1] / "examples" / "data"
+
+
+def apply_style():
+    plt.style.use(here / 'cpc.mplstyle')

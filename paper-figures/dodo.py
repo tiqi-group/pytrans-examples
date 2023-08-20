@@ -3,10 +3,10 @@
 #
 # Create: 03-2020 - Carmelo Mordini <carmelo> <carmelo.mordini@unitn.it>
 
-
 from pathlib import Path
 from importlib import import_module
 import matplotlib.pyplot as plt
+from doit import get_var
 
 
 DOIT_CONFIG = {
@@ -21,7 +21,7 @@ modules = {m.stem[5:]: import_module(f"{sources}.{m.stem}")
            for m in sources.glob('plot_*.py')}
 
 fig_format = 'png'
-SHOW = True
+SHOW = get_var('show', False)
 
 
 def task_plot():

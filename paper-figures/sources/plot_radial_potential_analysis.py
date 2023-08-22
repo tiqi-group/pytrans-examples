@@ -6,6 +6,7 @@
 
 
 import numpy as np
+import matplotlib.pyplot as plt
 from pytrans.analysis import analyse_potential
 from pytrans.plotting import plot_potential_make_layout
 from pytrans.ions import Ca40
@@ -24,7 +25,8 @@ def plot(figname):
 
     r0 = (0, 0, trap.z0)
     roi = ((-5e-6, 10e-6), 3.5e-6, 3.5e-6)
-    fig, axes = plot_potential_make_layout(n=1)
+    fig_width = plt.rcParams['figure.figsize'][0]
+    fig, axes = plot_potential_make_layout(n=1, fig_width=fig_width)
     analyse_potential(trap, voltages=waveform[0], ions=Ca40, r0=r0, roi=roi, verbose=False, axes=axes)
-
+    print(fig.get_figwidth(), fig.get_figheight())
     fig.savefig(figname)

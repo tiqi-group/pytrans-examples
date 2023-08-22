@@ -20,15 +20,15 @@ sources = Path('sources')
 modules = {m.stem[5:]: import_module(f"{sources}.{m.stem}")
            for m in sources.glob('plot_*.py')}
 
-fig_format = 'png'
-SHOW = get_var('show', False)
+fig_format = get_var('format', 'pdf')
+show = get_var('show', False)
 
 
 def task_plot():
     for name, module in modules.items():
         figname = f"figures/fig_{name}.{fig_format}"
         actions = [(module.plot, [figname], {})]
-        if SHOW:
+        if show:
             actions += [plt.show]
         yield {
             'name': name,
@@ -41,6 +41,7 @@ def task_plot():
 def task_cleanfigs():
     def cleanfigs():
         for p in Path('figures').glob(f"fig_*.{fig_format}"):
+            print(f"Deleting {p}")
             p.unlink()
     return {
         'actions': [cleanfigs]

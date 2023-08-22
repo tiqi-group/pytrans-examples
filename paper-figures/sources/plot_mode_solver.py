@@ -47,7 +47,11 @@ def plot(figname):
         ['freqs'] + [f"{mode}_{j}" for j in plot_indices] for mode in plot_modes
     ]
     wr = [3] + [1] * len(plot_indices)
-    figsize = plt.figaspect(4 / 12)
+
+    fig_aspect = 4 / 12
+    # fig_width = plt.rcParams['figure.figsize]  # for figure
+    fig_width = 7.223  # for figure*
+    figsize = (fig_width, fig_width * fig_aspect)
     print(figsize)
     fig, axes = plt.subplot_mosaic(mosaic, figsize=figsize, width_ratios=wr)
     fig.suptitle('Ion spacing, mode spectrum, mode participations')

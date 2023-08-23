@@ -7,26 +7,25 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from pytrans.ions import Yb171, Ba138
+from pytrans.ions import Yb171, Ba138, Ca40  # noqa: F401
 from pytrans.plotting.plotting import _get_ion_color, _add_ions_legend
-from pytrans.analysis.analytic_traps import HarmonicTrap
+from pytrans.analysis.analytic_traps import HarmonicTrap, QuarticTrap  # noqa: F401
 from pytrans.analysis import analyse_potential
 from pytrans.analysis.mode_solver import project_on_single_ion_modes
 
 
 def plot(figname):
-    from plotting.settings import apply_style
+    from plotting.settings import apply_style, fig_width_two_columns
+    from plotting.utils import label_subplots
     apply_style()
 
-    # wx, wy, wz = 1.3e6, 3.5e6, 4.19e6
-    wx, wy, wz = -0.1e6, 3.396e6, 4.0e6
-    # trap = HarmonicTrap(wx, wy, wz, ion=Yb171, tilt_yz=0) + QuarticTrap(5e16)
-    trap = HarmonicTrap(abs(wx), wy, wz, ion=Yb171, tilt_yz=3e8)
-
-    ions = [Ba138, Yb171, Yb171, Yb171] * 3 + [Ba138]
+    # Ca anharmonic
+    wx, wy, wz = -0.2e6, 8e6, 10e6
+    trap = HarmonicTrap(wx, wy, wz, ion=Ca40, tilt_yz=0) + QuarticTrap(5e16)
+    ions = [Ca40] * 21
     roi = (40e-6, 1e-5, 1e-5)
 
-    res = analyse_potential(trap, voltages=None, ions=ions, ion1=Yb171, r0=(0, 0, 0), roi=roi,
+    res = analyse_potential(trap, voltages=None, ions=ions, ion1=Ca40, r0=(0, 0, 0), roi=roi,
                             verbose=False, plot=False)
 
     # trap_freqs = res.mode_freqs
@@ -37,24 +36,31 @@ def plot(figname):
     v1 = res.mode_vectors
     mode_vectors_proj, mode_labels = project_on_single_ion_modes(mode_vectors, v1, keys=['ax', 'r0', 'r1'])
 
-    plot_modes = ['ax', 'r0']
+    plot_modes = ['ax']
     plot_indices = [0, 1, 3, 6, 10]
     # plot_indices = list(range(n_ions))
-
+# a
     mosaic = [['freqs'] + [0] * (len(plot_indices))]
     # mosaic += [['freqs'] * len(plot_indices)]
     mosaic += [
         ['freqs'] + [f"{mode}_{j}" for j in plot_indices] for mode in plot_modes
     ]
-    wr = [3] + [1] * len(plot_indices)
 
-    fig_aspect = 4 / 12
+    wr = [3] + [1] * len(plot_indices)
+    # hr = [1.3] + [1] * len(plot_modes)
+
+    mosaic = mosaic[::-1]  # flip vertically
+    hr = [1] * len(plot_modes) + [1.3]
+
+    fig_aspect = 4.5 / 12
     # fig_width = plt.rcParams['figure.figsize]  # for figure
-    fig_width = 7.223  # for figure*
+    fig_width = fig_width_two_columns
     figsize = (fig_width, fig_width * fig_aspect)
-    print(figsize)
-    fig, axes = plt.subplot_mosaic(mosaic, figsize=figsize, width_ratios=wr)
-    fig.suptitle('Ion spacing, mode spectrum, mode participations')
+    fig, axes = plt.subplot_mosaic(mosaic, figsize=figsize,  # layout='compressed',
+                                   width_ratios=wr, height_ratios=hr,
+                                   gridspec_kw=dict(bottom=0.175, left=0.075, right=0.925, wspace=0.3)
+                                   )
+    # fig.suptitle('Ion spacing, mode spectrum, mode participations')
 
     ax0 = axes[0]
     x, y = x_eq[:, [0, 1]].T * 1e6
@@ -62,7 +68,10 @@ def plot(figname):
     ax0.scatter(x, y, c=ion_colors)
     if y.ptp() < 0.1:
         ax0.set_ylim(-0.6, 0.6)
-    ax0.set_yticks([])
+    ax0.set(
+        xlabel='x [um]',
+        yticks=[],
+    )
     _add_ions_legend(ax0, ions)
 
     # x0 = roi[0]
@@ -70,12 +79,19 @@ def plot(figname):
     pot = trap.potential(None, xx, 0, 0, 1, pseudo=False)
     ax1 = ax0.twinx()
     ax1.plot(xx * 1e6, pot)
+    ax1.set(
+        yticks=[],
+    )
 
     af = axes['freqs']
     for mode in mode_labels.keys():
         fs = mode_freqs[mode_labels[mode]] * 1e-6
         af.plot(fs, 'o', label=mode)
     af.legend()
+    af.set(
+        xlabel='Mode index',
+        ylabel='Mode frequency [MHz]'
+    )
 
     for mode in plot_modes:
         mv1 = mode_vectors_proj[mode_labels[mode]]
@@ -83,15 +99,18 @@ def plot(figname):
         for j in plot_indices:
             m = mv1[j]
             ax = axes[f"{mode}_{j}"]
-            ax.sharey(axes['ax_0'])
+            ax.sharey(axes[plot_modes[0] + '_0'])
             ax.set_xticks([])
             ax.bar(np.arange(1, len(m) + 1), m, color=ion_colors)
             ax.axhline(0, color='k', lw=0.75, zorder=-1)
 
-            af.plot(j, fs[j], 's', mfc='none', mec='gray', ms=10)
+            af.plot(j, fs[j], 's', mfc='none', mec='gray', ms=plt.rcParams['lines.markersize'] * 1.5)
             ax.yaxis.tick_right()
             if j != plot_indices[-1]:
                 ax.yaxis.set_tick_params(which='both', labelleft=False, labelright=False)
                 ax.yaxis.offsetText.set_visible(False)
+
+    _labelled = ['freqs', plot_modes[0] + '_0', 0]
+    label_subplots(axes=[axes[key] for key in _labelled], xpos=-0.015, ypos=0.03, scale_text=1.2)
 
     fig.savefig(figname)

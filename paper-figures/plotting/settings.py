@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 here = Path(__file__).resolve().parent
 
 data_dir = here.parents[1] / "examples" / "data"
+fig_width_two_columns = 7.223  # for figure*
 
 
 def apply_style():

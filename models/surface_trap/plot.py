@@ -58,12 +58,26 @@ def find_ylim(a, r=0.05):
     return _min - r * ptp, _max + r * ptp
 
 
-def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
+def make_plot_on_trap_layout(n: int = 1, fig=None, figsize1=(6, 3.2)):
+    if fig is None:
+        fig = plt.figure(figsize=(figsize1[0] * n, figsize1[1]), dpi=100)
+    _subplots_kw = dict(nrows=2, ncols=1, sharex=True, gridspec_kw=dict(height_ratios=[0.5, 1], top=0.95, bottom=0.14))
+    if n > 1:
+        subfigs = fig.subfigures(1, n)
+        axes = [subfigs[j].subplots(**_subplots_kw) for j in range(n)]
+    else:
+        axes = fig.subplots(**_subplots_kw)
+    return fig, axes
+
+
+def _setup_plot_on_trap(trap: SurfaceTrap, axes=None, vmin=-10, vmax=10, cmap='RdBu_r',
                         edgecolor='k', linewidth=0.5, fontsize=7, title=''):
 
-    fig, axes = plt.subplots(2, 1, figsize=(6, 3.2),
-                             sharex=True, dpi=100,
-                             gridspec_kw=dict(height_ratios=[0.5, 1], top=0.95, bottom=0.14))
+    if axes is None:
+        fig, axes = make_plot_on_trap_layout(1)
+    else:
+        fig = axes[0].figure
+
     fig.suptitle(title)
     ax0, ax = axes
 
@@ -82,9 +96,10 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
 
     poss = [labels_positions[j] for j in trap.electrode_all_indices]
     labels = []
-    for pos in poss:
-        tx = ax.text(*pos, f"{0:+.2f}", ha='center', va='center', fontsize=fontsize)
-        labels.append(tx)
+    if fontsize > 0:
+        for pos in poss:
+            tx = ax.text(*pos, f"{0:+.2f}", ha='center', va='center', fontsize=fontsize)
+            labels.append(tx)
 
     pc_rf = PatchCollection(patches_blank, facecolor='none', edgecolor=edgecolor, linewidth=linewidth, cmap=cmap, norm=norm)
     ax.add_collection(pc_rf)
@@ -116,10 +131,10 @@ def _setup_plot_on_trap(trap: SurfaceTrap, vmin=-10, vmax=10, cmap='RdBu_r',
     return fig, axes, artists
 
 
-def plot_voltages_on_trap(trap: SurfaceTrap, voltages: ArrayLike, vmin=-10, vmax=10, cmap='RdBu_r',
+def plot_voltages_on_trap(trap: SurfaceTrap, voltages: ArrayLike, axes=None, vmin=-10, vmax=10, cmap='RdBu_r',
                           edgecolor='k', linewidth=0.5, fontsize=7, title=''):
 
-    fig, axes, artists = _setup_plot_on_trap(trap, vmin, vmax, cmap,
+    fig, axes, artists = _setup_plot_on_trap(trap, axes, vmin, vmax, cmap,
                                              edgecolor, linewidth, fontsize, title)
 
     ax0, ax = axes

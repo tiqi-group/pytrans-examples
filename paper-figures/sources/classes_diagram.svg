@@ -9,7 +9,7 @@
    id="svg1"
    inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
    sodipodi:docname="classes_diagram.svg"
-   inkscape:export-filename="classes_diagram.pdf"
+   inkscape:export-filename="..\figures\classes_diagram.pdf"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,8 +28,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="3.2035073"
-     inkscape:cx="181.67588"
-     inkscape:cy="92.554806"
+     inkscape:cx="140.15888"
+     inkscape:cy="130.95022"
      inkscape:window-width="1920"
      inkscape:window-height="1137"
      inkscape:window-x="-8"
@@ -113,208 +113,184 @@
     <rect
        style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
        id="rect1"
-       width="36.196274"
-       height="12.442643"
+       width="36.939602"
+       height="13.846703"
        x="14.315898"
        y="7.748363"
        ry="2.0440414" />
     <text
        xml:space="preserve"
-       style="font-size:2.11667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:Monospace;font-variant-ligatures:none;stroke-width:0.264583"
+       style="font-size:2.46944px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:Monospace;font-variant-ligatures:none;stroke-width:0.264583"
        x="16.205105"
        y="10.969444"
        id="text1"><tspan
          sodipodi:role="line"
          id="tspan1"
-         style="font-size:2.11667px;stroke-width:0.264583"
+         style="font-size:2.46944px;stroke-width:0.264583"
          x="16.205105"
          y="10.969444">AbstractTrapModel</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:1.41111px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
        x="37.586163"
        y="13.587728"
        id="text3"><tspan
          sodipodi:role="line"
          id="tspan3"
-         style="font-size:1.41111px;stroke-width:0.264583"
+         style="font-size:1.76389px;stroke-width:0.264583"
          x="37.586163"
          y="13.587728">- potential</tspan><tspan
          sodipodi:role="line"
-         style="font-size:1.41111px;stroke-width:0.264583"
+         style="font-size:1.76389px;stroke-width:0.264583"
          x="37.586163"
-         y="15.351615"
+         y="15.79259"
          id="tspan4">- gradient</tspan><tspan
          sodipodi:role="line"
-         style="font-size:1.41111px;stroke-width:0.264583"
+         style="font-size:1.76389px;stroke-width:0.264583"
          x="37.586163"
-         y="17.115501"
+         y="17.997452"
          id="tspan5">- hessian</tspan><tspan
          sodipodi:role="line"
-         style="font-size:1.41111px;stroke-width:0.264583"
+         style="font-size:1.76389px;stroke-width:0.264583"
          x="37.586163"
-         y="18.879389"
+         y="20.202314"
          id="tspan6">- ...</tspan></text>
-    <g
-       id="g11"
-       transform="translate(4.4753111,-8.5298031)">
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.15;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
-         id="rect6"
-         width="16.821177"
-         height="2.5105388"
-         x="11.822366"
-         y="21.298874"
-         ry="0.54797715" />
-      <text
-         xml:space="preserve"
-         style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="13.246807"
-         y="23.185631"
-         id="text7"><tspan
-           sodipodi:role="line"
-           id="tspan7"
-           style="font-size:1.76389px;stroke-width:0.264583"
-           x="13.246807"
-           y="23.185631">DCElectrode</tspan></text>
-    </g>
-    <g
-       id="g10"
-       transform="translate(4.8841195,-9.0554141)">
-      <text
-         xml:space="preserve"
-         style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="12.874172"
-         y="27.098511"
-         id="text8"><tspan
-           sodipodi:role="line"
-           id="tspan8"
-           style="font-size:1.76389px;stroke-width:0.264583"
-           x="12.874172"
-           y="27.098511">RFElectrode</tspan></text>
-      <use
-         x="0"
-         y="0"
-         xlink:href="#rect6"
-         id="use10"
-         transform="translate(-0.4088084,3.9128804)" />
-    </g>
-    <g
-       id="g25"
-       transform="translate(11.422486,-0.4120361)">
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
-         id="rect16"
-         width="17.337149"
-         height="7.6534925"
-         x="54.27161"
-         y="17.499233"
-         ry="1.752036" />
-      <text
-         xml:space="preserve"
-         style="font-size:2.11667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="57.025589"
-         y="19.952084"
-         id="text16"><tspan
-           sodipodi:role="line"
-           id="tspan16"
-           style="stroke-width:0.264583"
-           x="57.025589"
-           y="19.952084">Objective</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-size:1.41111px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="57.004917"
-         y="22.206999"
-         id="text17"><tspan
-           sodipodi:role="line"
-           id="tspan17"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="57.004917"
-           y="22.206999">- objective</tspan><tspan
-           sodipodi:role="line"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="57.004917"
-           y="23.970886"
-           id="tspan18">- constraint</tspan></text>
-    </g>
-    <g
-       id="g19"
-       transform="translate(7.9519884,-16.374894)">
-      <text
-         xml:space="preserve"
-         style="font-size:2.11667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="22.499372"
-         y="43.714157"
-         id="text12"><tspan
-           sodipodi:role="line"
-           id="tspan12"
-           style="stroke-width:0.264583"
-           x="22.499372"
-           y="43.714157">Ion</tspan></text>
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
-         id="rect19-1"
-         width="9.0749569"
-         height="3.1996152"
-         x="19.924568"
-         y="41.526787"
-         ry="0.6500023" />
-    </g>
-    <g
-       id="g20"
-       transform="translate(9.2734567,-17.698791)">
-      <text
-         xml:space="preserve"
-         style="font-size:2.11667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="18.047857"
-         y="53.852417"
-         id="text13"><tspan
-           sodipodi:role="line"
-           style="stroke-width:0.264583"
-           x="18.047857"
-           y="53.852417"
-           id="tspan14">Waveform</tspan></text>
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
-         id="rect19-7"
-         width="13.782686"
-         height="4.4384909"
-         x="16.249235"
-         y="51.001686"
-         ry="1.2151905" />
-    </g>
-    <g
-       id="g28"
-       transform="translate(10.42015,-0.4120361)">
-      <text
-         xml:space="preserve"
-         style="font-size:2.11667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="60.095722"
-         y="36.565659"
-         id="text19"><tspan
-           sodipodi:role="line"
-           id="tspan19"
-           style="stroke-width:0.264583"
-           x="60.095722"
-           y="36.565659">Solver</tspan></text>
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
-         id="rect19-7-1"
-         width="13.782686"
-         height="4.4384909"
-         x="57.051178"
-         y="33.714928"
-         ry="1.2151905" />
-    </g>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.15;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect6"
+       width="17.399317"
+       height="2.8409061"
+       x="16.46286"
+       y="12.603887"
+       ry="0.54797715" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.11667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="17.722118"
+       y="14.655827"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="font-size:2.11667px;stroke-width:0.264583"
+         x="17.722118"
+         y="14.655827">DCElectrode</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.11666667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="17.758291"
+       y="18.043097"
+       id="text8"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="stroke-width:0.264583;font-size:2.11666667px"
+         x="17.758291"
+         y="18.043097">RFElectrode</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#rect6"
+       id="use10"
+       transform="translate(0,3.3872699)" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect16"
+       width="19.814911"
+       height="9.047473"
+       x="64.455215"
+       y="16.746017"
+       ry="1.752036" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.46944px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="66.932907"
+       y="19.302752"
+       id="text16"><tspan
+         sodipodi:role="line"
+         id="tspan16"
+         style="font-size:2.46944px;stroke-width:0.264583"
+         x="66.932907"
+         y="19.302752">Objective</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="67.200661"
+       y="22.222731"
+       id="text17"><tspan
+         sodipodi:role="line"
+         id="tspan17"
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="67.200661"
+         y="22.222731">- objective</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="67.200661"
+         y="24.427593"
+         id="tspan18">- constraint</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.46944px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="30.124256"
+       y="27.339264"
+       id="text12"><tspan
+         sodipodi:role="line"
+         id="tspan12"
+         style="font-size:2.46944px;stroke-width:0.264583"
+         x="30.124256"
+         y="27.339264">Ion</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect19-1"
+       width="9.0749569"
+       height="3.1996152"
+       x="27.876556"
+       y="25.151894"
+       ry="0.6500023" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.46944px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="26.472548"
+       y="36.153625"
+       id="text13"><tspan
+         sodipodi:role="line"
+         style="font-size:2.46944px;stroke-width:0.264583"
+         x="26.472548"
+         y="36.153625"
+         id="tspan14">Waveform</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect19-7"
+       width="14.815084"
+       height="4.4384918"
+       x="25.006493"
+       y="33.302895"
+       ry="1.2151905" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.46944px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="69.874756"
+       y="36.153622"
+       id="text19"><tspan
+         sodipodi:role="line"
+         id="tspan19"
+         style="font-size:2.46944px;stroke-width:0.264583"
+         x="69.874756"
+         y="36.153622">Solver</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect19-7-1"
+       width="13.782686"
+       height="4.4384909"
+       x="67.471329"
+       y="33.302891"
+       ry="1.2151905" />
     <path
        style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker23);paint-order:markers fill stroke"
-       d="m 50.512174,13.969685 h 5.599605 V 35.522137 H 39.305378"
+       d="m 51.2555,13.969685 h 4.856279 v 21.552452 c -5.602134,0 10.680525,1.84e-4 -16.290202,0"
        id="path25"
        sodipodi:nodetypes="cccc" />
     <path
        style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#ArrowWideHeavy);paint-order:markers fill stroke"
-       d="m 56.11178,20.913942 9.582316,0"
+       d="m 56.11178,20.913942 8.343435,0"
        id="path26"
        sodipodi:nodetypes="cc" />
     <path
@@ -324,131 +300,128 @@
        sodipodi:nodetypes="cc" />
     <path
        style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker31);paint-order:markers fill stroke"
-       d="m 74.362671,37.789765 v 3.011492 H 31.770493 v -3.059871"
+       d="m 74.362671,37.789765 0,3.672226 -41.948636,0.06194 0,-3.720601"
        id="path28"
        sodipodi:nodetypes="cccc" />
     <path
        style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker30);paint-order:markers fill stroke"
-       d="m 74.36267,24.740689 v 8.562203"
-       id="path29" />
+       d="m 74.36267,25.79349 0,7.509402"
+       id="path29"
+       sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:1.41111px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-       x="40.097679"
-       y="35.169617"
+       style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="41.417"
+       y="35.069695"
        id="text31"><tspan
          sodipodi:role="line"
          id="tspan31"
-         style="font-size:1.41111px;stroke-width:0.264583"
-         x="40.097679"
-         y="35.169617">variable</tspan></text>
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="41.417"
+         y="35.069695">variable</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:1.41111px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-       x="33.260616"
-       y="40.4104"
+       style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="33.88636"
+       y="40.939568"
        id="text32"><tspan
          sodipodi:role="line"
          id="tspan32"
-         style="font-size:1.41111px;stroke-width:0.264583"
-         x="33.260616"
-         y="40.4104">value</tspan></text>
-    <g
-       id="g12"
-       transform="translate(-33.024313,-8.0447831)">
-      <rect
-         style="fill:none;stroke:#000000;stroke-width:0.338056;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
-         id="rect16-4"
-         width="25.71727"
-         height="11.828726"
-         x="57.574661"
-         y="55.419094"
-         ry="2.1596925" />
-      <text
-         xml:space="preserve"
-         style="font-size:2.11667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="60.284611"
-         y="57.827919"
-         id="text16-7"><tspan
-           sodipodi:role="line"
-           id="tspan16-7"
-           style="stroke-width:0.264583"
-           x="60.284611"
-           y="57.827919">pytrans.analysis</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-size:1.41111px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="60.263939"
-         y="60.082832"
-         id="text17-3"><tspan
-           sodipodi:role="line"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="60.263939"
-           y="60.082832"
-           id="tspan18-5">- analyse_potential</tspan><tspan
-           sodipodi:role="line"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="60.263939"
-           y="61.846722"
-           id="tspan9">- analyse_waveform</tspan><tspan
-           sodipodi:role="line"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="60.263939"
-           y="63.610607"
-           id="tspan11">- simulate_waveform</tspan><tspan
-           sodipodi:role="line"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="60.263939"
-           y="65.374496"
-           id="tspan10">- mode_solver</tspan></text>
-    </g>
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="33.88636"
+         y="40.939568">value</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.338056;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect16-4-6-4"
+       width="30.241703"
+       height="13.715287"
+       x="21.955662"
+       y="46.584766"
+       ry="2.1596925" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.46944px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="23.922285"
+       y="49.370174"
+       id="text16-7"><tspan
+         sodipodi:role="line"
+         id="tspan16-7"
+         style="font-size:2.46944px;stroke-width:0.264583"
+         x="23.922285"
+         y="49.370174">pytrans.analysis</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="24.397163"
+       y="52.203232"
+       id="text17-3"><tspan
+         sodipodi:role="line"
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="24.397163"
+         y="52.203232"
+         id="tspan18-5">- analyse_potential</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="24.397163"
+         y="54.408092"
+         id="tspan9">- analyse_waveform</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="24.397163"
+         y="56.612957"
+         id="tspan11">- simulate_waveform</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="24.397163"
+         y="58.817818"
+         id="tspan10">- mode_solver</tspan></text>
     <g
        id="g13"
-       transform="translate(3.9293754,-24.821293)">
+       transform="translate(0,-0.02600336)">
       <text
          xml:space="preserve"
-         style="font-size:1.41111px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="60.263939"
-         y="77.656815"
+         style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="64.193314"
+         y="53.331074"
          id="text17-3-1"><tspan
            sodipodi:role="line"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="60.263939"
-           y="77.656815"
+           style="font-size:1.76389px;stroke-width:0.264583"
+           x="64.193314"
+           y="53.331074"
            id="tspan18-5-1">- plot_potential</tspan><tspan
            sodipodi:role="line"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="60.263939"
-           y="79.4207"
+           style="font-size:1.76389px;stroke-width:0.264583"
+           x="64.193314"
+           y="55.535934"
            id="tspan9-2">- plot3d_potential</tspan><tspan
            sodipodi:role="line"
-           style="font-size:1.41111px;stroke-width:0.264583"
-           x="60.263939"
-           y="81.184593"
+           style="font-size:1.76389px;stroke-width:0.264583"
+           x="64.193314"
+           y="57.740799"
            id="tspan10-3">- mode_solver</tspan></text>
       <text
          xml:space="preserve"
-         style="font-size:2.11667px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-         x="60.218464"
-         y="75.680367"
+         style="font-size:2.46944px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+         x="62.527927"
+         y="50.412498"
          id="text19-2"><tspan
            sodipodi:role="line"
            id="tspan19-7"
-           style="stroke-width:0.264583"
-           x="60.218464"
-           y="75.680367">pytrans.plotting</tspan></text>
+           style="font-size:2.46944px;stroke-width:0.264583"
+           x="62.527927"
+           y="50.412498">pytrans.plotting</tspan></text>
       <rect
          style="fill:none;stroke:#000000;stroke-width:0.338056;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
          id="rect16-4-6"
-         width="25.717268"
-         height="9.4342756"
-         x="57.574661"
-         y="73.39283"
+         width="28.196774"
+         height="12.168936"
+         x="60.512936"
+         y="47.383945"
          ry="2.1596925" />
     </g>
     <path
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker31);paint-order:markers fill stroke;stop-color:#000000;stop-opacity:1"
-       d="M 14.315898,13.969685 H 9.9888767 L 9.8720742,53.288674 H 24.550348"
+       d="M 14.315898,13.969685 H 9.9888767 l -0.1168025,39.318989 12.0835878,0"
        id="path13"
        sodipodi:nodetypes="cccc" />
     <path
@@ -458,23 +431,24 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 25.522692,35.52214 H 9.928418"
+       d="m 25.006493,35.52214 -15.078075,0"
        id="path15"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:1.41111px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
-       x="19.277498"
-       y="35.155148"
+       style="font-size:1.76389px;line-height:1.25;font-family:Monospace;-inkscape-font-specification:'Monospace, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="18.203806"
+       y="35.051609"
        id="text32-0"><tspan
          sodipodi:role="line"
          id="tspan32-1"
-         style="font-size:1.41111px;stroke-width:0.264583"
-         x="19.277498"
-         y="35.155148">value</tspan></text>
+         style="font-size:1.76389px;stroke-width:0.264583"
+         x="18.203806"
+         y="35.051609">value</tspan></text>
     <path
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker31);paint-order:markers fill stroke;stop-color:#000000;stop-opacity:1"
-       d="M 50.267619,53.288672 H 61.504036"
-       id="path17" />
+       d="m 52.197365,53.44241 8.315571,-1e-6"
+       id="path17"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>

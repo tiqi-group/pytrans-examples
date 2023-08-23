@@ -5,5 +5,6 @@
 # Computer Physics Commmunication journal matplotlib style
 
 figure.figsize: 3.487, 2.615
-font.size: 6
-legend.fontsize: 6
+font.size: 7
+legend.fontsize: 7
+lines.markersize: 5

@@ -33,7 +33,7 @@ def task_plot():
         yield {
             'name': name,
             'actions': actions,
-            'file_dep': [module.__file__],
+            'file_dep': [module.__file__, 'plotting/cpc.mplstyle'],
             'targets': [figname]
         }
 

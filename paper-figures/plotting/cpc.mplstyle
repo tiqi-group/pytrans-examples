@@ -8,3 +8,5 @@ figure.figsize: 3.487, 2.615
 font.size: 7
 legend.fontsize: 7
 lines.markersize: 5
+lines.linewidth: 1.5
+axes.linewidth: 0.8

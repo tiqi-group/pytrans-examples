@@ -11,6 +11,8 @@ import json
 import subprocess
 import figurefirst as fifi
 
+from pprint import pprint
+
 
 def plot(figname):
 
@@ -21,27 +23,41 @@ def plot(figname):
     apply_style()
 
     here = Path(__file__).parent
-    layout = fifi.FigureLayout(here / 'fig_transport_template_twocolumns.svg', make_mplfigures=True)
+    layout = fifi.FigureLayout(here / 'fig_transport_template_twocolumns.svg',
+                               make_mplfigures=True)
+
+    pprint(layout.axes)
+
+    trap = SurfaceTrap()
+    waveform = np.load(data_dir / 'waveform_transport.npy')
 
     with open(data_dir / 'analysis_transport.json', 'r') as fp:
         results = json.load(fp)
 
-    x_eq = np.stack([np.asarray(r['x_eq']) * 1e6 for r in results], axis=0)
-
     ax = layout.axes['ax']['axis']
-    ax.plot(x_eq[:, 0], 'k')
+
+    t_eq = np.arange(len(waveform)) * trap.dt
+    x_eq = np.stack([np.asarray(r['x_eq']) for r in results], axis=0)
+    ax.plot(t_eq * 1e6, x_eq[:, 0] * 1e6, 'k')
+
+    # with open(data_dir / 'simulation_transport.json', 'r') as fp:
+    #     sim_results = json.load(fp)
+    #
+    # t_sim = np.asarray(sim_results['t'])
+    # x_sim = np.asarray(sim_results['x'])
+    # ax.plot(t_sim * 1e6, x_sim[:, :, 0] * 1e6)
 
     ax.set(
         xlabel='t [us]',
         ylabel='x [um]'
     )
 
-    trap = SurfaceTrap()
-    waveform = np.load(data_dir / 'waveform_transport.npy')
+    # I have no idea why this doesn't work ??
+    # _style = {'font.size': 5, 'axes.linewidth': 0.5}
+    # plt.style.use(_style)
 
     def _plot_voltages(voltages, axes, fontsize=5):
-        # _style = {'font.size': 5, 'axes.linewidth': 0.5}
-        # with mpl.style.context(_style):
+
         _ = plot_voltages_on_trap(trap, voltages, axes=axes, fontsize=0)
         ax0, ax = axes
         ax0.set(
@@ -65,11 +81,14 @@ def plot(figname):
     cax = layout.axes['cax']['axis']
     mpl.colorbar.ColorbarBase(cax, cmap='RdBu_r', norm=mpl.colors.Normalize(vmin=-10, vmax=10))
     cax.set(
-        yticks=(-10, 0, 10)
+        yticks=(-10, 0, 10),
+        ylabel='DC Voltage [V]'
     )
-    cax.yaxis.set_ticks_position('left')
+    cax.yaxis.set_ticks_position('right')
+    cax.tick_params(labelsize=5)
+    cax.yaxis.get_label().set_fontsize(5)
 
     figname_svg = figname[:-4] + '.svg'
     layout.save(figname_svg)
     subprocess.run(["inkscape", figname_svg, "--export-type=pdf", "-o", figname], shell=True)
-    # Path(figname_svg).unlink()
+    Path(figname_svg).unlink()

@@ -23,8 +23,9 @@ def plot(figname):
     trap = SegmentedTrap()
     waveform = np.load(data_dir / 'waveform_static_segmented_trap.npy')
 
-    r0 = (0, 0, trap.z0)
-    roi = ((-10e-6, 15e-6), 3.5e-6, 3.5e-6)
+    x0 = 0
+    r0 = (x0, 0, trap.z0)
+    roi = ((x0 - 10e-6, x0 + 15e-6), 3.5e-6, 3.5e-6)
     fig_width = plt.rcParams['figure.figsize'][0]
     fig, axes = plot_potential_make_layout(n=1, fig_width=fig_width)
 

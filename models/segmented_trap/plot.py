@@ -28,7 +28,7 @@ with open(electrodes_data, 'r') as f:
 electrode_x = []
 for ele in electrodes.values():
     ele = np.asarray(ele[0])
-    electrode_x.append(ele[:, 0].mean())
+    electrode_x.append(ele[:-1, 0].mean())
 
 trap_y = min(abs(ele[:, 1]))
 

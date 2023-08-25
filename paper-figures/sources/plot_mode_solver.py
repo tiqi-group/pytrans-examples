@@ -50,12 +50,13 @@ def plot(figname):
     # hr = [1.3] + [1] * len(plot_modes)
 
     mosaic = mosaic[::-1]  # flip vertically
-    hr = [1] * len(plot_modes) + [1.3]
+    hr = [1] * len(plot_modes) + [1.4]
 
-    fig_aspect = 4.5 / 12
-    # fig_width = plt.rcParams['figure.figsize]  # for figure
     fig_width = fig_width_two_columns
-    figsize = (fig_width, fig_width * fig_aspect)
+    # fig_aspect = 3.5 / 12
+    # figsize = (fig_width, fig_width * fig_aspect)
+    fig_height = 2.5
+    figsize = (fig_width, fig_height)
     fig, axes = plt.subplot_mosaic(mosaic, figsize=figsize,  # layout='compressed',
                                    width_ratios=wr, height_ratios=hr,
                                    gridspec_kw=dict(bottom=0.175, left=0.075, right=0.925, wspace=0.3)
@@ -72,7 +73,7 @@ def plot(figname):
         xlabel='x [um]',
         yticks=[],
     )
-    _add_ions_legend(ax0, ions)
+    _add_ions_legend(ax0, ions, loc='lower right')
 
     # x0 = roi[0]
     xx = np.linspace(-roi[0], roi[0], 200)

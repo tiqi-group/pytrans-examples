@@ -39,7 +39,7 @@ def main():
         if x_clip is not None:
             np.clip(pp[:, 0], *x_clip, out=pp[:, 0])
         if y_clip is not None:
-            np.clip(pp[:, 1], *x_clip, out=pp[:, 1])
+            np.clip(pp[:, 1], *y_clip, out=pp[:, 1])
         return (
             (pp[:, 0].mean(), -pp[:, 1].mean(), z),
             pp[:, 0].ptp() - gap / 2,
@@ -66,11 +66,16 @@ def main():
 
     # Create the grid for the vector field
     x, y, z = np.mgrid[0:0:1j, -200:200:30j, 10:200:30j]
-    u, v, w = electric_field(x, y, z)
-    p3d.plot_vector_field(plotter, x, y, z, u, v, w, factor=12, cmap='Greens', clim=(800, 15000))
+    # u, v, w = electric_field(x, y, z)
+    # p3d.plot_vector_field(plotter, x, y, z, u, v, w, factor=12, cmap='Greens', clim=(800, 15000))
 
     plotter.add_axes(color='k')
-    plotter.show(screenshot="figures/surface_trap.png")
+    # plotter.show(screenshot="figures/surface_trap.png")
+
+    def screenshot(plotter):
+        plotter.screenshot("figures/surface_trap.png")
+
+    plotter.show(before_close_callback=screenshot)
 
 
 if __name__ == '__main__':

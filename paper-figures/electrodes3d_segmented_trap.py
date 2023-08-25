@@ -62,7 +62,12 @@ def main():
     # p3d.plot_vector_field(plotter, x, y, z, u, v, w, factor=2, cmap='Reds')
 
     plotter.add_axes(color='k')
-    plotter.show(screenshot="figures/segmented_trap.png")
+    # plotter.show(screenshot="figures/segmented_trap.png")
+
+    def screenshot(plotter):
+        plotter.screenshot("figures/segmented_trap.png")
+
+    plotter.show(before_close_callback=screenshot)
 
 
 def print_lims():

@@ -14,12 +14,13 @@ pytrans = {path = "deps/pytrans", develop = true}
 qinterp = {path = "deps/qinterp", develop = true}
 rectset = {path = "deps/rectset", develop = true}
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 ecos = "^2.0.12"
 autopep8 = "^1.7.0"
 flake8 = "^5.0.4"
 mypy = "^1.0.1"
 pytest = "^7.2.2"
+nbmake = "^1.4.6"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

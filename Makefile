@@ -3,4 +3,7 @@
 default: test
 
 test:
-	poetry run pytest tests/ -c pyproject.toml
+	poetry run pytest -c pyproject.toml tests/
+
+test-notebooks:
+	poetry run pytest -c pyproject.toml --nbmake examples/

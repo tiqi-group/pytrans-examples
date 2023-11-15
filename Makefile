@@ -1,6 +1,6 @@
-.PHONY: test
+.PHONY: test test-notebooks
 
-default: test
+default: test-notebooks
 
 test:
 	poetry run pytest -c pyproject.toml tests/

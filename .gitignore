@@ -1,8 +1,6 @@
 *.zip
-_models/
-
-*.doit*
-
+examples/data/*
+!examples/data/.gitkeep
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

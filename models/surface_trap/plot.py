@@ -155,11 +155,11 @@ def plot_voltages_on_trap(trap: SurfaceTrap, voltages: ArrayLike, axes=None, vmi
     return fig, axes
 
 
-def animate_waveform_on_trap(trap: SurfaceTrap, waveform: ArrayLike, vmin=-10, vmax=10, cmap='RdBu_r',
+def animate_waveform_on_trap(trap: SurfaceTrap, waveform: ArrayLike, axes=None, vmin=-10, vmax=10, cmap='RdBu_r',
                              edgecolor='k', linewidth=0.5, fontsize=7, title='',
                              frames=None, animate_kw=dict()):
 
-    fig, axes, artists = _setup_plot_on_trap(trap, vmin, vmax, cmap,
+    fig, axes, artists = _setup_plot_on_trap(trap, axes, vmin, vmax, cmap,
                                              edgecolor, linewidth, fontsize, title)
     ax0, ax = axes
     pc, pot, ttime, labels = artists

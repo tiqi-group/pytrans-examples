@@ -1,21 +1,20 @@
 [tool.poetry]
 name = "pytrans-examples"
 version = "0.1.0"
-description = "Examples and showcase repo for waveform generation in actual traps with pytrans"
+description = "Examples and showcase repo for waveform generation with pytrans"
 authors = ["cmordini <cmordini@phys.ethz.ch>"]
 packages = [
      { include = "models" },
   ]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.12"
+python = ">=3.10,<3.12"
 ipykernel = "^6.9.0"
 pytrans = {path = "deps/pytrans", develop = true}
 qinterp = {path = "deps/qinterp", develop = true}
 rectset = {path = "deps/rectset", develop = true}
 
 [tool.poetry.group.dev.dependencies]
-ecos = "^2.0.12"
 autopep8 = "^1.7.0"
 flake8 = "^5.0.4"
 mypy = "^1.0.1"

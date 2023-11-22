@@ -10,7 +10,7 @@ packages = [
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
 ipykernel = "^6.9.0"
-pytrans = {path = "deps/pytrans", develop = true}
+pytrans = {path = "deps/pytrans", develop = true, extras = ["dev", "docs"]}
 qinterp = {path = "deps/qinterp", develop = true}
 rectset = {path = "deps/rectset", develop = true}
 

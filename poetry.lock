@@ -2131,7 +2131,7 @@ name = "rectset"
 version = "1.0.0"
 description = "Analytical potentials for rectangle electrodes in a surface ion trap"
 optional = false
-python-versions = "*"
+python-versions = ">=3.8"
 files = []
 develop = true
 

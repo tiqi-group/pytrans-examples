@@ -2,7 +2,7 @@
 name = "pytrans-examples"
 version = "0.1.0"
 description = "Examples and showcase repo for waveform generation with pytrans"
-authors = ["cmordini <cmordini@phys.ethz.ch>"]
+authors = ["Carmelo Mordini <carmelo.mordini@gmail.com>"]
 packages = [
      { include = "models" },
   ]
@@ -10,9 +10,9 @@ packages = [
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
 ipykernel = "^6.9.0"
-pytrans = {path = "deps/pytrans", develop = true, extras = ["dev", "docs"]}
+rectset = "^1.0.1"
 qinterp = {path = "deps/qinterp", develop = true}
-rectset = {path = "deps/rectset", develop = true}
+pytrans = {path = "deps/pytrans", develop = true, extras = ["dev", "docs"]}
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^1.7.0"

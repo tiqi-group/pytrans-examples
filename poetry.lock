@@ -2128,19 +2128,17 @@ url = "deps/qinterp"
 
 [[package]]
 name = "rectset"
-version = "1.0.0"
+version = "1.0.1"
 description = "Analytical potentials for rectangle electrodes in a surface ion trap"
 optional = false
 python-versions = ">=3.8"
-files = []
-develop = true
+files = [
+    {file = "rectset-1.0.1-py3-none-any.whl", hash = "sha256:a0967bc75bb35c88d1c07fc1c621acff937a572b0b0538d4a17cefb04b66dc00"},
+    {file = "rectset-1.0.1.tar.gz", hash = "sha256:58ec6fbe46174b6307b8edfb99d4efa6815dfaf6edf643f5fe05e2c7f65f8899"},
+]
 
 [package.dependencies]
 numpy = "*"
-
-[package.source]
-type = "directory"
-url = "deps/rectset"
 
 [[package]]
 name = "referencing"
@@ -2539,4 +2537,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "018a5f45a6fabd1601c0faaae0000b73a75bfa302c86a1b305f97c84e8160b60"
+content-hash = "2d9bad8fec11158e0cb41ab3c8730c5192f24d99b58ca34823e0fcc088d40658"

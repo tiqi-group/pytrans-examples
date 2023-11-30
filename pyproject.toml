@@ -11,8 +11,8 @@ packages = [
 python = ">=3.10,<3.12"
 ipykernel = "^6.9.0"
 rectset = "^1.0.1"
-qinterp = {path = "deps/qinterp", develop = true}
-pytrans = {path = "deps/pytrans", develop = true, extras = ["dev", "docs"]}
+qinterp = {git = "https://github.com/carmelom/qinterp.git"}
+pytrans = {git = "https://github.com/tiqi-group/pytrans.git"}
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^1.7.0"
